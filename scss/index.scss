@@ -1,0 +1,154 @@
+//Variables
+$color_base:#FCF3CF;
+$color_primary:#F7DC6F;
+$color_secondary:#F0F3F4;
+
+$font_base: 'Montserrat', sans-serif;
+
+//Class Global
+//Styles Global
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: $font_base;
+}
+button{
+    border: none;
+    padding: 5px;
+    outline: none;
+    cursor: pointer;
+
+    transition: box-shadow .3s ease;
+    &:hover{
+        box-shadow: 0px 1px 5px rgba(0, 0, 0, 0.35);
+    }
+}
+input,textarea{
+    border: none;
+    width: 100%;
+    background: none;
+    outline: none;
+    padding: 5px 8px;
+    box-shadow: 0px 3px 5px 1px $color_secondary;
+    &::placeholder{
+        font-family: $font_base;
+    }
+}
+a{
+    color: inherit;
+    outline: none;
+    text-decoration: none;
+}
+//All styles
+body{
+    //Cabecera app
+    header{
+        padding: 10px;
+        background-color: $color-base;
+        text-align: center;
+    }
+    //Form Styles
+    section.ctn-form-app{
+        padding: 10px;
+        article{
+            .form{
+                padding: 10px;
+                
+                display: grid;
+                gap: 15px;
+                div{
+                    width: 100%;
+                    text-align: center;
+                    input{
+                        outline: 0.1em solid black;
+                        border-radius: 10px;
+                    }
+                    input[type="submit"]{
+                        width: fit-content;
+                        background: rgb(0, 128, 255);
+                        border-radius: 15px;
+                        padding: 10px 15px;
+                        color: white;
+                        font-weight: 600;
+                        cursor: pointer;
+
+                        transition: box-shadow .3s ease;
+                        &:hover{
+                            box-shadow: 1px 1px 0 black;
+                        }
+                    }
+                }
+                &::before{
+                    content: "Ingresa los campos para crear un Usuario";
+                    width: fit-content;
+                    border-bottom: 1px solid black;
+                    font-weight: 600;
+                }
+                //Class message box after form
+                .message-box-alert{
+                    padding: 5px 10px;
+                    border-radius: 10px;
+                    color: white;
+                    border-bottom: 2px solid black;
+
+                    &.danger{
+                        background: red;
+                    }
+                    &.primary{
+                        background:cornflowerblue;
+                    }
+                    
+                    &.success{
+                        background: rgb(26, 117, 3);
+                        text-shadow: 1px 1px 1px black;
+                    }
+                }
+            }
+        }
+        //All styles ctn notes
+        .ctn-all-notes{
+            border-top: 2px dashed rgba(0, 30, 255, 0.499);
+            padding-top: 10px;
+            ul{
+                display: grid;
+                gap: 10px;
+                grid-template-columns: repeat(auto-fill, minmax(200px,1fr));
+                a{
+                    position: relative;
+                    box-shadow: 0px 1px 5px #898989;
+                    border-radius: 10px;
+                    padding: 10px;
+
+                    li{
+                        list-style: none;
+                        .btns-action{
+                            margin-top: 5px;
+                            button{
+                                border-radius: 10px;
+                                padding: 10px;
+
+                                font-weight: 600;
+                                color: white;
+                                text-shadow:1px 1px 0 black;
+                                
+                                &.btn-eliminar{
+                                    background: red;
+                                }
+
+                                &.btn-editar{
+                                    background: cornflowerblue;
+                                }
+                            }
+                        }
+                    }
+
+                    &::before{
+                        content: "";
+                        position: absolute;
+                    }
+                }
+            }
+        }
+    }
+}

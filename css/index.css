@@ -1,0 +1,132 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Montserrat", sans-serif;
+}
+
+button {
+  border: none;
+  padding: 5px;
+  outline: none;
+  cursor: pointer;
+  transition: box-shadow 0.3s ease;
+}
+button:hover {
+  box-shadow: 0px 1px 5px rgba(0, 0, 0, 0.35);
+}
+
+input, textarea {
+  border: none;
+  width: 100%;
+  background: none;
+  outline: none;
+  padding: 5px 8px;
+  box-shadow: 0px 3px 5px 1px #F0F3F4;
+}
+input::placeholder, textarea::placeholder {
+  font-family: "Montserrat", sans-serif;
+}
+
+a {
+  color: inherit;
+  outline: none;
+  text-decoration: none;
+}
+
+body header {
+  padding: 10px;
+  background-color: #FCF3CF;
+  text-align: center;
+}
+body section.ctn-form-app {
+  padding: 10px;
+}
+body section.ctn-form-app article .form {
+  padding: 10px;
+  display: grid;
+  gap: 15px;
+}
+body section.ctn-form-app article .form div {
+  width: 100%;
+  text-align: center;
+}
+body section.ctn-form-app article .form div input {
+  outline: 0.1em solid black;
+  border-radius: 10px;
+}
+body section.ctn-form-app article .form div input[type=submit] {
+  width: fit-content;
+  background: rgb(0, 128, 255);
+  border-radius: 15px;
+  padding: 10px 15px;
+  color: white;
+  font-weight: 600;
+  cursor: pointer;
+  transition: box-shadow 0.3s ease;
+}
+body section.ctn-form-app article .form div input[type=submit]:hover {
+  box-shadow: 1px 1px 0 black;
+}
+body section.ctn-form-app article .form::before {
+  content: "Ingresa los campos para crear un Usuario";
+  width: fit-content;
+  border-bottom: 1px solid black;
+  font-weight: 600;
+}
+body section.ctn-form-app article .form .message-box-alert {
+  padding: 5px 10px;
+  border-radius: 10px;
+  color: white;
+  border-bottom: 2px solid black;
+}
+body section.ctn-form-app article .form .message-box-alert.danger {
+  background: red;
+}
+body section.ctn-form-app article .form .message-box-alert.primary {
+  background: cornflowerblue;
+}
+body section.ctn-form-app article .form .message-box-alert.success {
+  background: rgb(26, 117, 3);
+  text-shadow: 1px 1px 1px black;
+}
+body section.ctn-form-app .ctn-all-notes {
+  border-top: 2px dashed rgba(0, 30, 255, 0.499);
+  padding-top: 10px;
+}
+body section.ctn-form-app .ctn-all-notes ul {
+  display: grid;
+  gap: 10px;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+}
+body section.ctn-form-app .ctn-all-notes ul a {
+  position: relative;
+  box-shadow: 0px 1px 5px #898989;
+  border-radius: 10px;
+  padding: 10px;
+}
+body section.ctn-form-app .ctn-all-notes ul a li {
+  list-style: none;
+}
+body section.ctn-form-app .ctn-all-notes ul a li .btns-action {
+  margin-top: 5px;
+}
+body section.ctn-form-app .ctn-all-notes ul a li .btns-action button {
+  border-radius: 10px;
+  padding: 10px;
+  font-weight: 600;
+  color: white;
+  text-shadow: 1px 1px 0 black;
+}
+body section.ctn-form-app .ctn-all-notes ul a li .btns-action button.btn-eliminar {
+  background: red;
+}
+body section.ctn-form-app .ctn-all-notes ul a li .btns-action button.btn-editar {
+  background: cornflowerblue;
+}
+body section.ctn-form-app .ctn-all-notes ul a::before {
+  content: "";
+  position: absolute;
+}
+
+/*# sourceMappingURL=index.css.map */
