@@ -30,6 +30,7 @@ function validateForm(evt){
     
     //Validate name content
     const arrFullname = user.fullname.split('');
+    console.log(arrFullname);
     const validateName = (() => {
         let value;
         

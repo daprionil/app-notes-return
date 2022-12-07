@@ -1,3 +1,5 @@
+import users from './Users.js';
+
 let db;
 
 function createDB(){
@@ -12,6 +14,7 @@ function createDB(){
     //
     DB.onsuccess = e => {
         db = e.target.result;
+        users.getUsers(db);
     };
     
     //Se ejecuta cuando hay una versión anterior a la actual
@@ -20,7 +23,7 @@ function createDB(){
         db = e.target.result;
 
         //Create Object Store
-        const objectStore = this.db.createObjectStore('users',{keyPath:'keyUser',autoIncrement:true});
+        const objectStore = db.createObjectStore('users',{keyPath:'keyUser',autoIncrement:true});
 
         objectStore.createIndex('fullname','fullname',{unique:false});
         objectStore.createIndex('telefono','telefono',{unique:true});

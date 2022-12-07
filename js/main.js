@@ -1,4 +1,4 @@
-import createDB,{db} from "./class/DB.js";
+import createDB from "./class/DB.js";
 import * as sel from './selectors.js';
 import {validateForm} from './functions.js'
 
