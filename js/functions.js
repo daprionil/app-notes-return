@@ -109,7 +109,6 @@ function createUserHtml(user){
 function deleteUser(keyUser){
     //Confirm validate, Delete User
     const validate = confirm('¿Desea Eliminar el Usuario?');
-
     if(validate){
         users.deleteUser({keyUser,db});
     };
@@ -120,6 +119,8 @@ function editUser(user){
     
     //Set form with information user selected
     fillForm(user);
+
+    
 }
 
 //Fill Form with information of Object User
