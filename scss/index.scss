@@ -107,7 +107,7 @@ body{
             }
         }
         //All styles ctn notes
-        .ctn-all-notes{
+        .ctn-all-users{
             border-top: 2px dashed rgba(0, 30, 255, 0.499);
             padding-top: 10px;
             ul{
@@ -122,8 +122,23 @@ body{
 
                     li{
                         list-style: none;
+
+                        p{
+                            // display: -webkit-box;
+                            // -webkit-line-clamp: 1;
+                            // -webkit-box-orient: vertical;
+                            // overflow: hidden;
+
+                            white-space: nowrap;
+                            text-overflow: ellipsis;
+                            overflow: hidden;
+                        }
+
                         .btns-action{
                             margin-top: 5px;
+                            display: flex;
+                            justify-content: flex-start;
+                            gap: 10px;
                             button{
                                 border-radius: 10px;
                                 padding: 10px;

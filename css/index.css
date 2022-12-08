@@ -90,41 +90,49 @@ body section.ctn-form-app article .form .message-box-alert.success {
   background: rgb(26, 117, 3);
   text-shadow: 1px 1px 1px black;
 }
-body section.ctn-form-app .ctn-all-notes {
+body section.ctn-form-app .ctn-all-users {
   border-top: 2px dashed rgba(0, 30, 255, 0.499);
   padding-top: 10px;
 }
-body section.ctn-form-app .ctn-all-notes ul {
+body section.ctn-form-app .ctn-all-users ul {
   display: grid;
   gap: 10px;
   grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
 }
-body section.ctn-form-app .ctn-all-notes ul a {
+body section.ctn-form-app .ctn-all-users ul a {
   position: relative;
   box-shadow: 0px 1px 5px #898989;
   border-radius: 10px;
   padding: 10px;
 }
-body section.ctn-form-app .ctn-all-notes ul a li {
+body section.ctn-form-app .ctn-all-users ul a li {
   list-style: none;
 }
-body section.ctn-form-app .ctn-all-notes ul a li .btns-action {
-  margin-top: 5px;
+body section.ctn-form-app .ctn-all-users ul a li p {
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
 }
-body section.ctn-form-app .ctn-all-notes ul a li .btns-action button {
+body section.ctn-form-app .ctn-all-users ul a li .btns-action {
+  margin-top: 5px;
+  display: flex;
+  justify-content: flex-start;
+  gap: 10px;
+}
+body section.ctn-form-app .ctn-all-users ul a li .btns-action button {
   border-radius: 10px;
   padding: 10px;
   font-weight: 600;
   color: white;
   text-shadow: 1px 1px 0 black;
 }
-body section.ctn-form-app .ctn-all-notes ul a li .btns-action button.btn-eliminar {
+body section.ctn-form-app .ctn-all-users ul a li .btns-action button.btn-eliminar {
   background: red;
 }
-body section.ctn-form-app .ctn-all-notes ul a li .btns-action button.btn-editar {
+body section.ctn-form-app .ctn-all-users ul a li .btns-action button.btn-editar {
   background: cornflowerblue;
 }
-body section.ctn-form-app .ctn-all-notes ul a::before {
+body section.ctn-form-app .ctn-all-users ul a::before {
   content: "";
   position: absolute;
 }

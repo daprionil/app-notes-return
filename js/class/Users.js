@@ -1,3 +1,6 @@
+import ui from './UI.js';
+import * as sel from '../selectors.js';
+
 class Users{
     //Create new User
     addUser(user,db){
@@ -5,8 +8,12 @@ class Users{
         const objectStore = transaction.objectStore('users');
 
         //Si hay algún error en la transaction, si no se logró realizar
-        transaction.onerror = err => {
-            console.log(err);
+        transaction.onerror = () => {
+            ui.showMessage({
+                form:sel.form,
+                msg:'Este usuario ya existe en la Base de Datos',
+                type:'danger'
+            });
         }
         //Si se realizó correctamente sin eventualidad
         transaction.oncomplete = () => {
@@ -16,13 +23,51 @@ class Users{
         //Agregar el Objeto al Almacen
         objectStore.add(user);
     };
+    
+    //Delete User
+    deleteUser({db,keyUser}){
+        const transaction = db.transaction(['users'],'readwrite');
+        const objectStore = transaction.objectStore('users');
 
-    //Get users in the Data Base
-    getUsers(db){
-        //Get Object Store
-        const objectStore = db.transaction('users','readonly').objectStore('users');
+        //Si hay algún error en la transaction, si no se logró realizar
+        transaction.onerror = () => {
+            ui.showMessage({
+                form:sel.form,
+                msg:'No se ha podido Eliminar el Usuario',
+                type:'danger'
+            });
+        }
+        //Si se realizó correctamente sin eventualidad
+        transaction.oncomplete = () => {
+            //Reload View HTML Users
+            ui.viewAllUserBox(db);
+        }
 
-        objectStore.getAll().onsuccess = value => value.target.result;
+        //Eliminar el Objeto al Almacen
+        objectStore.delete(keyUser);
+    };
+    
+
+    //Edit a user, Put or Patch
+    editUser(user){
+        const transaction = db.transaction(['users'],'readwrite');
+        const objectStore = transaction.objectStore('users');
+
+        //Si hay algún error en la transaction, si no se logró realizar
+        transaction.onerror = () => {
+            ui.showMessage({
+                form:sel.form,
+                msg:'Este usuario ya existe en la Base de Datos',
+                type:'danger'
+            });
+        }
+        //Si se realizó correctamente sin eventualidad
+        transaction.oncomplete = () => {
+            console.log('La transacción se realizó correctamente');
+        }
+
+        //Editar el Objeto al Almacen
+        objectStore.put(user);
     }
 }
 

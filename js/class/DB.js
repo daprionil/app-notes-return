@@ -1,8 +1,9 @@
 import users from './Users.js';
+import ui from './UI.js';
 
 let db;
 
-function createDB(){
+export default function(){
     const DB = window.indexedDB.open('users',1);
     
     //En caso de que el navegador no soporte indexedDB o haya una version
@@ -14,7 +15,7 @@ function createDB(){
     //
     DB.onsuccess = e => {
         db = e.target.result;
-        users.getUsers(db);
+        ui.viewAllUserBox(db);
     };
     
     //Se ejecuta cuando hay una versión anterior a la actual
@@ -32,7 +33,6 @@ function createDB(){
     }; 
 }
 
-export default createDB;
 export {
     db
 }

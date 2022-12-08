@@ -1,3 +1,6 @@
+import * as sel from '../selectors.js';
+import {createUserHtml} from '../functions.js';
+
 export default new class{
     //show message
     showMessage({form,msg,type = 'danger'}){
@@ -19,5 +22,30 @@ export default new class{
         setTimeout(() => {
             msgBox.remove();
         }, 4000);
+    };
+
+    //View All users created in Data Base
+    viewAllUserBox(db){;
+        this.clearBoxUsers()
+
+        const objectStore = db.transaction('users','readonly').objectStore('users');
+        objectStore.getAll().onsuccess = value => {
+            const arrUsers = value.target.result;
+            
+            //Create Document Fragment for Elements Users HTML
+            const frag = document.createDocumentFragment();
+            arrUsers.forEach(user => {
+                frag.appendChild(createUserHtml(user));
+            });
+            //Adding Fragment with users in HTML
+            sel.ctnUsers.appendChild(frag);
+        };
+    }
+
+    //Clear Box ctn-users 
+    clearBoxUsers(){
+        while(sel.ctnUsers.firstElementChild){
+            sel.ctnUsers.firstElementChild.remove();
+        }
     }
 }
