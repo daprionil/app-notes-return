@@ -3,45 +3,76 @@ import * as sel from './selectors.js';
 import {db} from './class/DB.js';
 import users from './class/Users.js';
 
+
+let mode = false;
+
+let user = {
+    email:'',
+    fullname:'',
+    telefono:'',
+    yearold:''
+};
+
 function validateForm(evt){
     evt.preventDefault();
 
     //Collect all datas from form
     const $ = evt.target;
-    const user = {
-        email:$.email.value,
-        fullname:$.fullname.value,
-        telefono:$.telefono.value,
-        yearold:$.yearold.value
+    user = {
+        ...user,
+        email:$.email.value.trim(),
+        fullname:$.fullname.value.trim(),
+        telefono:$.telefono.value.trim(),
+        yearold:$.yearold.value.trim()
     };
-    
-    //Validate Data
-    const validate = Object.values(user).every(val => val !== '');
-
+    //Validate All Data Inputs
+    const validate = Object.entries(user).every(([key,val]) => {
+        if(key === 'keyUser') return true;
+        return val !== '';
+    });
     if(!validate){
         ui.showMessage({form:sel.form,msg:'Complete todos los campos para continuar',type:'danger'});
         return;
     };
     
-    if(Number(user.yearold) < 0){
+    //Validating yearold
+    const numberYearold = Number(user.yearold);
+    if(numberYearold < 1 || numberYearold > 99){
         ui.showMessage({form:sel.form,msg:'La edad no es válida',type:'danger'});
         return;
     }
     
     //Validate name content
-    
     const validateName = (() => {
         const arrFullname = user.fullname.split('');
         //Iteration values
-        return arrFullname.every(val => isNaN(val));
+        const value = arrFullname.every(val => {
+            if(val === ' ') return true;
+            return isNaN(val);
+        });
+        return value;
     })();
 
     if(!validateName){
         ui.showMessage({form:sel.form,msg:'El nombre no es válido',type:'danger'});
         return;
     }
+    
+    //Validate state mode, And Edit or Add user
+    if(mode){
+        users.editUser({user:{...user},db});
+
+        //Base actions before proccess
+        ui.showMessage({form:sel.form,msg:'Editado Correctamente',type:'primary'});
+        ui.viewAllUserBox(db);
+        changingInputSubmit('Agregar');
+        evt.target.reset();
+        resetObject(user);
+        mode = false;
+        return;
+    };
     //Add element in the dataBase
-    users.addUser(user,db);
+    users.addUser({user,db});
 
     //Actions Base after from the proccess
     ui.showMessage({form:sel.form,msg:'Agregado Correctamente',type:'success'});
@@ -111,29 +142,59 @@ function deleteUser(keyUser){
     const validate = confirm('¿Desea Eliminar el Usuario?');
     if(validate){
         users.deleteUser({keyUser,db});
+        resetObject(user);
     };
-}
+};
 
 //Edit User Selected
-function editUser(user){
+function editUser(objUser){
     
     //Set form with information user selected
-    fillForm(user);
+    fillForm(objUser);
 
-    
-}
+    //Set data from objUser to object user global
+    fillObjectUserGlobal(objUser);
+
+    //Changing the button text in the form
+    changingInputSubmit('Guardar');
+
+    //Change Mode Form
+    mode = true;
+};
 
 //Fill Form with information of Object User
 function fillForm(user){
-    //Iterates into user Object 
+    //Iterates into user Object
     for(let key in user){
         if(sel.form[key]){
             //Set value in dinamic input form
             sel.form[key].value = user[key];
-        }
-    }
-}
+        };
+    };
+};
+
+//Reset Object
+function resetObject(obj){
+    for(let i in obj){
+        obj[i] = '';
+    };
+};
+
+
+//Set Information from ObjectUser Selected to Object user Global
+function fillObjectUserGlobal(objUser){
+    for(const data in objUser){
+        user[data] = objUser[data];
+    };
+};
+
+function changingInputSubmit(msg){
+    const input = sel.form.querySelector('input[type="submit"]');
+    input.value = msg;
+};
+//Changing 
+
 export {
     validateForm,
     createUserHtml
-}
+};

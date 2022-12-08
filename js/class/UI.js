@@ -4,6 +4,10 @@ import {createUserHtml} from '../functions.js';
 export default new class{
     //show message
     showMessage({form,msg,type = 'danger'}){
+        const msgExist = form.querySelector('.message-box-alert');
+
+        if(msgExist) return;
+
         const eleExist = form.querySelector('.message-box-alert success');
 
         //IIf a message box exists in the document element
@@ -26,7 +30,7 @@ export default new class{
 
     //View All users created in Data Base
     viewAllUserBox(db){;
-        this.clearBoxUsers()
+        this.clearBoxUsers();
 
         const objectStore = db.transaction('users','readonly').objectStore('users');
         objectStore.getAll().onsuccess = value => {

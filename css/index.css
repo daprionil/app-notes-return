@@ -35,14 +35,38 @@ a {
 }
 
 body header {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  justify-items: center;
+  align-items: center;
   padding: 10px;
-  background-color: #FCF3CF;
+  background-color: #F0F3F4;
   text-align: center;
+}
+body header .ctn-img a {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px;
+  border-radius: 10px;
+  transition: box-shadow 0.3s ease;
+}
+body header .ctn-img a img {
+  width: 30px;
+}
+body header .ctn-img a::before {
+  content: "Ir al Repositorio";
+  display: inline-block;
+}
+body header .ctn-img a:hover {
+  box-shadow: 0px 0px 10px #F7DC6F, 0px 1px 5px rgba(0, 0, 0, 0.316);
 }
 body section.ctn-form-app {
   padding: 10px;
 }
 body section.ctn-form-app article .form {
+  max-width: 600px;
+  margin: 0 auto;
   padding: 10px;
   display: grid;
   gap: 15px;
@@ -52,32 +76,34 @@ body section.ctn-form-app article .form div {
   text-align: center;
 }
 body section.ctn-form-app article .form div input {
-  outline: 0.1em solid black;
+  padding: 10px 15px;
   border-radius: 10px;
 }
 body section.ctn-form-app article .form div input[type=submit] {
   width: fit-content;
   background: rgb(0, 128, 255);
   border-radius: 15px;
-  padding: 10px 15px;
   color: white;
   font-weight: 600;
   cursor: pointer;
   transition: box-shadow 0.3s ease;
 }
 body section.ctn-form-app article .form div input[type=submit]:hover {
-  box-shadow: 1px 1px 0 black;
+  box-shadow: 1px 2px 5px rgba(0, 0, 0, 0.5);
 }
 body section.ctn-form-app article .form::before {
   content: "Ingresa los campos para crear un Usuario";
   width: fit-content;
+  margin: 0 auto;
   border-bottom: 1px solid black;
   font-weight: 600;
 }
 body section.ctn-form-app article .form .message-box-alert {
+  width: fit-content;
   padding: 5px 10px;
   border-radius: 10px;
   color: white;
+  font-weight: 600;
   border-bottom: 2px solid black;
 }
 body section.ctn-form-app article .form .message-box-alert.danger {
@@ -91,6 +117,8 @@ body section.ctn-form-app article .form .message-box-alert.success {
   text-shadow: 1px 1px 1px black;
 }
 body section.ctn-form-app .ctn-all-users {
+  margin: 0 auto;
+  max-width: 900px;
   border-top: 2px dashed rgba(0, 30, 255, 0.499);
   padding-top: 10px;
 }
@@ -135,6 +163,16 @@ body section.ctn-form-app .ctn-all-users ul a li .btns-action button.btn-editar 
 body section.ctn-form-app .ctn-all-users ul a::before {
   content: "";
   position: absolute;
+}
+body section.ctn-form-app .ctn-all-users::before {
+  display: block;
+  content: "Usuarios Creados";
+  width: fit-content;
+  padding: 10px;
+  margin: 10px 0;
+  border-radius: 10px;
+  font-weight: 600;
+  border-bottom: 1px solid black;
 }
 
 /*# sourceMappingURL=index.css.map */

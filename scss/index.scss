@@ -44,52 +44,87 @@ a{
 body{
     //Cabecera app
     header{
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        justify-items: center;
+        align-items: center;
+
         padding: 10px;
-        background-color: $color-base;
+        background-color: $color_secondary;
         text-align: center;
+
+        .ctn-img{
+            a{
+                display: flex;
+                align-items: center;
+                gap: 10px;
+
+                padding: 10px;
+                border-radius: 10px;
+
+                transition: box-shadow .3s ease;
+                img{
+                    width: 30px;
+                }
+                //Title before img
+                &::before{
+                    content: "Ir al Repositorio";
+                    display: inline-block;
+                }
+                //Hover
+                &:hover{
+                    box-shadow: 0px 0px 10px $color_primary,
+                                0px 1px 5px rgba(0, 0, 0, 0.316);
+                }
+            }
+        }
     }
     //Form Styles
     section.ctn-form-app{
         padding: 10px;
         article{
             .form{
+                max-width: 600px;
+                margin: 0 auto;
+
                 padding: 10px;
-                
                 display: grid;
                 gap: 15px;
                 div{
                     width: 100%;
                     text-align: center;
                     input{
-                        outline: 0.1em solid black;
+                        padding: 10px 15px;
                         border-radius: 10px;
                     }
                     input[type="submit"]{
                         width: fit-content;
                         background: rgb(0, 128, 255);
                         border-radius: 15px;
-                        padding: 10px 15px;
                         color: white;
                         font-weight: 600;
                         cursor: pointer;
 
                         transition: box-shadow .3s ease;
                         &:hover{
-                            box-shadow: 1px 1px 0 black;
+                            box-shadow: 1px 2px 5px rgba(0, 0, 0, 0.5);
                         }
                     }
                 }
                 &::before{
                     content: "Ingresa los campos para crear un Usuario";
                     width: fit-content;
+                    margin: 0 auto;
                     border-bottom: 1px solid black;
                     font-weight: 600;
                 }
                 //Class message box after form
                 .message-box-alert{
+                    width: fit-content;
                     padding: 5px 10px;
                     border-radius: 10px;
                     color: white;
+                    font-weight: 600;
                     border-bottom: 2px solid black;
 
                     &.danger{
@@ -108,6 +143,8 @@ body{
         }
         //All styles ctn notes
         .ctn-all-users{
+            margin: 0 auto;
+            max-width: 900px;
             border-top: 2px dashed rgba(0, 30, 255, 0.499);
             padding-top: 10px;
             ul{
@@ -163,6 +200,20 @@ body{
                         position: absolute;
                     }
                 }
+            }
+
+            //Title section for ctn users
+            &::before{
+                display: block;
+                
+                content: 'Usuarios Creados';
+                width: fit-content;
+                padding: 10px;
+                margin: 10px 0;
+                border-radius: 10px;
+
+                font-weight: 600;
+                border-bottom: 1px solid black;
             }
         }
     }

@@ -3,7 +3,7 @@ import * as sel from '../selectors.js';
 
 class Users{
     //Create new User
-    addUser(user,db){
+    addUser({user,db}){
         const transaction = db.transaction(['users'],'readwrite');
         const objectStore = transaction.objectStore('users');
 
@@ -49,7 +49,7 @@ class Users{
     
 
     //Edit a user, Put or Patch
-    editUser(user){
+    editUser({user,db}){
         const transaction = db.transaction(['users'],'readwrite');
         const objectStore = transaction.objectStore('users');
 
@@ -57,10 +57,11 @@ class Users{
         transaction.onerror = () => {
             ui.showMessage({
                 form:sel.form,
-                msg:'Este usuario ya existe en la Base de Datos',
+                msg:'No fue posible actualizar el Usuario',
                 type:'danger'
             });
-        }
+            window.location.reload();
+        };
         //Si se realizó correctamente sin eventualidad
         transaction.oncomplete = () => {
             console.log('La transacción se realizó correctamente');
